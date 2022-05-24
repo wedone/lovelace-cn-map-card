@@ -1,6 +1,7 @@
 console.info("%c  GAODE MAP CARD  \n%c Version 1.2.7 ",
 "color: orange; font-weight: bold; background: black", 
 "color: white; font-weight: bold; background: dimgray");
+window._AMapSecurityConfig = { securityJsCode:'您申请的安全密钥', }
 
 import 'https://webapi.amap.com/loader.js';
 import './w3color.js';
@@ -264,9 +265,7 @@ class GaodeMapCard extends HTMLElement {
     }else{
       AMap.convertFrom(gps, type, function (status, result) {
         // console.info(result.locations[0])
-        if (result.info === 'ok') {
-          that._showMarker(result.locations[0],entity,color,type);
-        }
+        if (result.info === 'ok') { that._showMarker(result.locations[0],entity,color,type); } else { console.info("%c 地图加载异常:%o", "color: white; font-weight: bold; background: dimgray",result); }
       });
     }
   }
